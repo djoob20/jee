@@ -37,7 +37,10 @@ public class Bonjour extends HttpServlet {
 		auteur.setNom("Diop");
 		auteur.setActif(true);
 		
+		String[]titres = {"titre1", "titre2","titre3", "titre4"};
+		
 		request.setAttribute("auteur", auteur);
+		request.setAttribute("titres", titres);
 		
 		this.getServletContext().getRequestDispatcher("/WEB-INF/bonjour.jsp").forward(request, response);
 	}
