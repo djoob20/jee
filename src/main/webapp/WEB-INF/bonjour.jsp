@@ -23,5 +23,18 @@
 	
 	<c:set target="${ auteur }" property="prenom" value="Sakho"/>
 	<p><c:out value="Bonjour ${ auteur.prenom }"/></p>
+	
+	<h1>JSTL Conditions</h1>
+	<p>
+		<c:if test="${ 20 < 10 }" var="variable">
+		</c:if>
+		<c:if test="${ 20 > 10 }" var="autreVariable">
+		</c:if>
+		
+		<c:choose>
+			<c:when test="${variable}">Variable!</c:when>
+			<c:when test="${autreVariable}">AutreVariable</c:when>
+		</c:choose>
+	</p>
 </body>
 </html>
