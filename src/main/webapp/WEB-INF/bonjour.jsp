@@ -19,6 +19,7 @@
 		<c:out value="Bonjour ${ pseudo }" />
 	</p>
 
+	<%-- 
 	<c:set target="${ auteur }" property="prenom" value="Sakho" />
 	<p>
 		<c:out value="Bonjour ${ auteur.prenom }" />
@@ -49,5 +50,26 @@
 	<c:forTokens items="un element/un autre element/un dernier element" delims="/ " var="item">
 		<p> <c:out value="${item} "></c:out> </p>
 	</c:forTokens>
+	
+--%>
+
+	<h1>JSTL les formulaires</h1>
+	<form method="post" action="bonjour">
+		<p>
+			<label for="login">Login: </label> 
+			<input type="text" name="login" id="login" />
+		</p>
+		<p>
+			<label for="pass">Password: </label> 
+			<input type="password" name="pass" id="pass" />
+		</p>
+
+		<input type="submit">
+	</form>
+	<c:if test="${ !empty form.result }">
+		<p>
+			<c:out value="${ form.result }"></c:out>
+		</p>
+	</c:if>
 </body>
 </html>

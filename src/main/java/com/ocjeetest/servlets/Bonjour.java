@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.ocjeetest.beans.Auteur;
+import com.ocjeetest.forms.ConnectionForm;
 
 
 @WebServlet("/Bonjour")
@@ -49,8 +50,12 @@ public class Bonjour extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		ConnectionForm form = new ConnectionForm();
+		form.verifyLogin(request);
+		
+		request.setAttribute("form", form);
+		
+		this.getServletContext().getRequestDispatcher("/WEB-INF/bonjour.jsp").forward(request, response);
 	}
 
 }
