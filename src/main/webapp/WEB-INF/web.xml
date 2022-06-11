@@ -32,6 +32,16 @@
 		<url-pattern>/bonjour</url-pattern>
 	</servlet-mapping>
 	
+	<servlet>
+		<servlet-name>Session</servlet-name>
+		<servlet-class>com.ocjeetest.servlets.Session</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>Session</servlet-name>
+		<url-pattern>/session</url-pattern>
+	</servlet-mapping>
+	
 	<jsp-config>
 		<jsp-property-group>
 			<url-patter>*.jsp</url-patter>
