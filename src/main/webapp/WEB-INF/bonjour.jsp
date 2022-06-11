@@ -5,6 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>bonjour</title>
+<style>
+<%@include file="/WEB-INF/css/styles.css"%></style>
 </head>
 <body>
 	<%@ include file="menu.jsp"%>
@@ -54,22 +56,25 @@
 --%>
 
 	<h1>JSTL les formulaires</h1>
-	<form method="post" action="bonjour">
-		<p>
-			<label for="login">Login: </label> 
-			<input type="text" name="login" id="login" />
-		</p>
-		<p>
-			<label for="pass">Password: </label> 
-			<input type="password" name="pass" id="pass" />
-		</p>
+	<div>
+		<form method="post" action="bonjour">
+			<p>
+				<label class="label" for="login">Login: </label> <input
+					class="input" type="text" name="login" id="login" />
+			</p>
+			<p>
+				<label class="label" for="pass">Password: </label> <input
+					class="input" type="password" name="pass" id="pass" />
+			</p>
 
-		<input type="submit">
-	</form>
-	<c:if test="${ !empty form.result }">
-		<p>
-			<c:out value="${ form.result }"></c:out>
-		</p>
-	</c:if>
+			<input class="input" type="submit">
+		</form>
+		<c:if test="${ !empty form.result }">
+			<p>
+				<c:out value="${ form.result }"></c:out>
+			</p>
+		</c:if>
+	</div>
+
 </body>
 </html>
