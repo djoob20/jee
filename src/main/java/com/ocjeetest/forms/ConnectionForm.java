@@ -9,7 +9,7 @@ public class ConnectionForm {
 	public void verifyLogin(HttpServletRequest request) {
 		String login = request.getParameter("login");
 		String pass = request.getParameter("pass");
-		if(pass.equals(login + "123")) {
+		if(pass != null && pass.equals(login + "123")) {
 			result = "connexion réussie!";
 		}else {
 			result = "connexion échouée!";
