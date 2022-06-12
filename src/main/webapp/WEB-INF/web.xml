@@ -41,10 +41,19 @@
 		<servlet-name>Session</servlet-name>
 		<url-pattern>/session</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<servlet-name>Cookies</servlet-name>
+		<servlet-class>com.ocjeetest.servlets.Cookies</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>Cookies</servlet-name>
+		<url-pattern>/cookies</url-pattern>
+	</servlet-mapping>
 	
 	<jsp-config>
 		<jsp-property-group>
-			<url-patter>*.jsp</url-patter>
+			<url-pattern>*.jsp</url-pattern>
 			<include-prelude>/WEB-INF/taglibs.jsp</include-prelude>
 		</jsp-property-group>
 	</jsp-config>

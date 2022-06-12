@@ -1,5 +1,3 @@
-<%@ page pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +9,7 @@
 	<%@ include file="menu.jsp"%>
 	<h1>Bonjour ${ empty auteur.prenom ? '' : auteur.prenom}
 		${auteur.nom}</h1>
-	<p>${ auteur.actif ? 'Vous Ãªtes actif' : 'Vous Ãªtes inactif' }</p>
+	<p>${ auteur.actif ? 'Vous êtes actif' : 'Vous êtes inactif' }</p>
 
 	<!-- JSTL -->
 	<h1>JSTL</h1>
@@ -41,10 +39,10 @@
 	
 	<h1>JSTL les boucles</h1>
 	<c:forEach var="i" begin="0" end="10" step="2">
-		<p>Un message nÂ°<c:out value="${i}"></c:out></p>
+		<p>Un message n°<c:out value="${i}"></c:out></p>
 	</c:forEach>
 	<c:forEach items="${ titres }" var="titre" varStatus="status">
-		<p>NÂ°<c:out value="${status.count}"/>: <c:out value=" ${ titre } "></c:out></p>
+		<p>N°<c:out value="${status.count}"/>: <c:out value=" ${ titre } "></c:out></p>
 	</c:forEach>
 	
 	<h1>JSTL boucle pour forTokens chaines characteres</h1>
@@ -71,7 +69,7 @@
 				<input class="input" type="text" name="desc" id="desc" />
 			</p>
 			<p>
-				<label class="label" for="file">Fichier Ã  envoyer: </label> 
+				<label class="label" for="file">Fichier à envoyer: </label> 
 				<input class="input" type="file" name="file" id="file" />
 			</p>
 			<input class="input" type="submit">
@@ -83,7 +81,7 @@
 		</c:if>
 		
 		 <c:if test="${ !empty file }">
-		 	<p><c:out value="Le fichier ${ file } (${ desc }) a Ã©tÃ© uploadÃ© !" /></p>
+		 	<p><c:out value="Le fichier ${ file } (${ desc }) a été uploadé !" /></p>
 		 </c:if>
 	</div>
 
