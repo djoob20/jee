@@ -2,15 +2,15 @@ package com.ocjeetest.beans;
 
 public class User {
 	
-	private String firstame;
+	private String firstname;
 	private String lastname;
 	
 	
-	public String getFirstame() {
-		return firstame;
+	public String getFirstname() {
+		return firstname;
 	}
-	public void setFirstame(String firstame) {
-		this.firstame = firstame;
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
 	}
 	public String getLastname() {
 		return lastname;

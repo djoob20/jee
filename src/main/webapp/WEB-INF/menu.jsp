@@ -4,4 +4,5 @@
 	<li><a href="/Jee_Test/bonjour">Bonjour</a></li>
 	<li><a href="/Jee_Test/session">Session</a></li>
 	<li><a href="/Jee_Test/cookies">Cookies</a></li>
+	<li><a href="/Jee_Test/name">Database</a></li>
 </ul>

@@ -41,15 +41,25 @@
 		<servlet-name>Session</servlet-name>
 		<url-pattern>/session</url-pattern>
 	</servlet-mapping>
+	
 	<servlet>
 		<servlet-name>Cookies</servlet-name>
 		<servlet-class>com.ocjeetest.servlets.Cookies</servlet-class>
 	</servlet>
-	
 	<servlet-mapping>
 		<servlet-name>Cookies</servlet-name>
 		<url-pattern>/cookies</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>DB_Servlet</servlet-name>
+		<servlet-class>com.ocjeetest.servlets.DB_Servlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DB_Servlet</servlet-name>
+		<url-pattern>/name</url-pattern>
+	</servlet-mapping>	
+	
 	
 	<jsp-config>
 		<jsp-property-group>
