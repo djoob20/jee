@@ -42,7 +42,6 @@ public class DB_Servlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		User user = new User();
 		user.setLastname(request.getParameter("nom"));
 		user.setFirstname(request.getParameter("prenom"));
