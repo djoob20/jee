@@ -8,8 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.ocjeetest.bdd.Names;
 import com.ocjeetest.beans.User;
+import com.ocjeetest.dao.DaoFactory;
+import com.ocjeetest.dao.UserDao;
 
 /**
  * Servlet implementation class DB_Servlet
@@ -17,22 +18,22 @@ import com.ocjeetest.beans.User;
 @WebServlet("/DB_Servlet")
 public class DB_Servlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	private UserDao userDao;
+	
+	@Override
+	public void init() throws ServletException {
+		DaoFactory daoFactory = DaoFactory.getInstance();
+		this.userDao = daoFactory.getUserDao();
+	}
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public DB_Servlet() {
-        super();
-      
-    }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Names names = new Names();
 		
-		request.setAttribute("users", names.getUsers());
+		request.setAttribute("users", userDao.getUsers());
 		
 		this.getServletContext().getRequestDispatcher("/WEB-INF/name.jsp").forward(request, response);
 		
@@ -46,10 +47,10 @@ public class DB_Servlet extends HttpServlet {
 		user.setLastname(request.getParameter("nom"));
 		user.setFirstname(request.getParameter("prenom"));
 		
-		Names names = new Names();
-		names.addUser(user);
+		userDao.addUser(user);
 		
-		request.setAttribute("users", names.getUsers());
+		request.setAttribute("users", userDao.getUsers());
+		
 		
 		this.getServletContext().getRequestDispatcher("/WEB-INF/name.jsp").forward(request, response);
 	}
