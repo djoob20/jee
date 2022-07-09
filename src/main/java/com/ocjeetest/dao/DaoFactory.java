@@ -28,11 +28,14 @@ public class DaoFactory {
 		
 		DaoFactory instance = new DaoFactory("jdbc:mysql://localhost:3306/javaee", "root", "779311199");
 		
+		
 		return instance;
 	}
 	
 	public Connection getConnetion() throws SQLException {
-		return DriverManager.getConnection(url, username, password);
+		Connection connection = DriverManager.getConnection(url, username, password);
+		connection.setAutoCommit(false);
+		return connection;
 	}
 	
 	public UserDao getUserDao() {

@@ -18,6 +18,8 @@ import com.ocjeetest.dao.UserDao;
 @WebServlet("/DB_Servlet")
 public class DB_Servlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private final String VIEW_PATH = "/WEB-INF/name.jsp";
+	private final String VIEW_NAME = "name";
 	
 	private UserDao userDao;
 	
@@ -26,16 +28,22 @@ public class DB_Servlet extends HttpServlet {
 		DaoFactory daoFactory = DaoFactory.getInstance();
 		this.userDao = daoFactory.getUserDao();
 	}
+	
        
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String lastname = request.getParameter("nom");
+		String firstname = request.getParameter("prenom");
+		
+		request.setAttribute("nom", lastname);
+		request.setAttribute("prenom", firstname);
 		
 		request.setAttribute("users", userDao.getUsers());
 		
-		this.getServletContext().getRequestDispatcher("/WEB-INF/name.jsp").forward(request, response);
+		this.getServletContext().getRequestDispatcher(VIEW_PATH).forward(request, response);
 		
 	}
 
@@ -43,16 +51,22 @@ public class DB_Servlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		User user = new User();
-		user.setLastname(request.getParameter("nom"));
-		user.setFirstname(request.getParameter("prenom"));
-		
-		userDao.addUser(user);
+		String lastname = request.getParameter("nom") != null || !request.getParameter("nom").equals("") ? request.getParameter("nom"): "";
+		String firstname = request.getParameter("prenom") != null || !request.getParameter("prenom").equals("") ? request.getParameter("prenom"): "";
+		if(!lastname.equals("") && !firstname.equals("")) {
+			request.setAttribute("nom", lastname);
+			request.setAttribute("prenom", firstname);
+			User user = new User();
+			user.setLastname(lastname);
+			user.setFirstname(firstname);
+			
+			userDao.addUser(user);
+		}
 		
 		request.setAttribute("users", userDao.getUsers());
-		
-		
-		this.getServletContext().getRequestDispatcher("/WEB-INF/name.jsp").forward(request, response);
+		response.sendRedirect(VIEW_NAME);
+
+
 	}
 
 }

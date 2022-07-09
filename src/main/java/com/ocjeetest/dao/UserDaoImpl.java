@@ -34,6 +34,7 @@ public class UserDaoImpl implements UserDao {
 			preparedStatement.setString(2, user.getFirstname());
 			
 			preparedStatement.executeUpdate();
+			connection.commit();
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
