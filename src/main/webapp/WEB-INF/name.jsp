@@ -10,7 +10,9 @@
 	<!-- JSTL Session -->
 	<h1>JSTL Database</h1>
 	
-		
+	
+	 <c:if test="${ !empty erreur }"><p style="color:red;"><c:out value="${ erreur }" /></p></c:if>
+	 	
 	<form method="post" action="DB_Servlet">
 	
 		<p>
@@ -26,7 +28,7 @@
 		<input class="input" type="submit">
 	</form>
 	
-	<c:if test="${ empty nom }"><p> <c:out value="Veuillez remplir tous les champs! "></c:out> </p></c:if>
+	
 	
 	<ul>
 		<c:forEach var="user" items="${ users }">	

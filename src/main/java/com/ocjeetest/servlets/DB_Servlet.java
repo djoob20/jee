@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.ocjeetest.beans.User;
+import com.ocjeetest.dao.DaoException;
 import com.ocjeetest.dao.DaoFactory;
 import com.ocjeetest.dao.UserDao;
 
@@ -35,13 +36,13 @@ public class DB_Servlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String lastname = request.getParameter("nom");
-		String firstname = request.getParameter("prenom");
 		
-		request.setAttribute("nom", lastname);
-		request.setAttribute("prenom", firstname);
 		
-		request.setAttribute("users", userDao.getUsers());
+		try {
+			request.setAttribute("users", userDao.getUsers());
+		} catch (DaoException e) {
+			request.setAttribute("erreur", e.getMessage());
+		}
 		
 		this.getServletContext().getRequestDispatcher(VIEW_PATH).forward(request, response);
 		
@@ -54,17 +55,20 @@ public class DB_Servlet extends HttpServlet {
 		String lastname = request.getParameter("nom") != null || !request.getParameter("nom").equals("") ? request.getParameter("nom"): "";
 		String firstname = request.getParameter("prenom") != null || !request.getParameter("prenom").equals("") ? request.getParameter("prenom"): "";
 		if(!lastname.equals("") && !firstname.equals("")) {
-			request.setAttribute("nom", lastname);
-			request.setAttribute("prenom", firstname);
-			User user = new User();
-			user.setLastname(lastname);
-			user.setFirstname(firstname);
+			try {
+				User user = new User();
+				user.setLastname(lastname);
+				user.setFirstname(firstname);
+				userDao.addUser(user);
+				request.setAttribute("users", userDao.getUsers());
+			} catch (Exception e) {
+				request.setAttribute("erreur", e.getMessage());
+			}
 			
-			userDao.addUser(user);
 		}
 		
-		request.setAttribute("users", userDao.getUsers());
 		response.sendRedirect(VIEW_NAME);
+		
 
 
 	}

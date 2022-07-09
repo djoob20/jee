@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.ocjeetest.beans.BeanException;
 import com.ocjeetest.beans.User;
 
 public class UserDaoImpl implements UserDao {
@@ -19,7 +20,7 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public void addUser(User user) {
+	public void addUser(User user) throws DaoException {
 		
 		String sqlQuery = "INSERT INTO noms(nom, prenom) VALUES(?,?);";
 		
@@ -37,12 +38,28 @@ public class UserDaoImpl implements UserDao {
 			connection.commit();
 			
 		} catch (SQLException e) {
-			e.printStackTrace();
+			try {
+				if(connection != null) {
+					connection.rollback();
+				}
+			} catch (SQLException e1) {
+				
+			}
+			throw new DaoException("Impossible de communiquer avec la base de données");
+		}finally {
+			try {
+                if (connection != null) {
+                    connection.close();  
+                }
+            } catch (SQLException e) {
+                throw new DaoException("Impossible de communiquer avec la base de données");
+            }
 		}
+		
 	}
 
 	@Override
-	public List<User> getUsers() {
+	public List<User> getUsers() throws DaoException {
 		List<User> users = new ArrayList<User>();
 
 		Connection connection = null;
@@ -67,8 +84,18 @@ public class UserDaoImpl implements UserDao {
 			}
 
 		} catch (SQLException e) {
-			e.printStackTrace();
-		} 
+			throw new DaoException("Impossible de communiquer avec la base de données");
+		} catch (BeanException be) {
+			throw new DaoException("Les données de la base sont invalides");
+		}finally {
+            try {
+                if (connection != null) {
+                    connection.close();  
+                }
+            } catch (SQLException e) {
+                throw new DaoException("Impossible de communiquer avec la base de données");
+            }
+        }
 
 		return users;
 	}

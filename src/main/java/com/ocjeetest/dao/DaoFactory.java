@@ -35,6 +35,7 @@ public class DaoFactory {
 	public Connection getConnetion() throws SQLException {
 		Connection connection = DriverManager.getConnection(url, username, password);
 		connection.setAutoCommit(false);
+		connection.setAutoCommit(false);
 		return connection;
 	}
 	

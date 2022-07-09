@@ -9,8 +9,14 @@ public class User {
 	public String getFirstname() {
 		return firstname;
 	}
-	public void setFirstname(String firstname) {
-		this.firstname = firstname;
+	public void setFirstname(String firstname) throws BeanException {
+		
+		if(firstname.length() > 10) {
+			throw new BeanException("Le nom est trop grand ! (10 caractères maximum)");
+		}else {
+			
+			this.firstname = firstname;
+		}
 	}
 	public String getLastname() {
 		return lastname;

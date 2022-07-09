@@ -6,7 +6,7 @@ import com.ocjeetest.beans.User;
 
 public interface UserDao {
 	
-	void addUser(User user);
-	List<User> getUsers();
+	void addUser(User user) throws DaoException;
+	List<User> getUsers() throws DaoException;
 
 }
